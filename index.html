@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyAI | Exam Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div class="min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav class="bg-white dark:bg-gray-800 shadow-md px-6 py-4 sticky top-0 z-10">
+            <div class="container mx-auto flex justify-between items-center flex-wrap">
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <i class="fas fa-book-open text-blue-600 dark:text-blue-400 text-2xl"></i>
+                        <h1 class="text-2xl font-bold">StudyAI</h1>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html"
+                        class="hover:text-blue-500 transition-colors font-medium text-blue-500">Home</a>
+                    <a href="plans.html" class="hover:text-blue-500 transition-colors font-medium">Subscription
+                        Plans</a>
+                    <a href="#" class="hover:text-blue-500 transition-colors font-medium">About</a>
+                    <a href="#" class="hover:text-blue-500 transition-colors font-medium">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle"
+                        class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                    </button>
+                    <button class="md:hidden" id="mobileMenuButton">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <!-- Mobile Menu (inside the container) -->
+                <div id="mobileMenu" class="hidden md:hidden mt-4 w-full pb-2 space-y-2">
+                    <a href="index.html" class="block py-2 hover:text-blue-500 transition-colors text-blue-500">Home</a>
+                    <a href="plans.html" class="block py-2 hover:text-blue-500 transition-colors">Subscription Plans</a>
+                    <a href="#" class="block py-2 hover:text-blue-500 transition-colors">About</a>
+                    <a href="#" class="block py-2 hover:text-blue-500 transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container mx-auto p-6 flex-grow">
+            <!-- Hero Section -->
+            <div
+                class="text-center py-8 mb-8 bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg text-white shadow-lg">
+                <h2 class="text-4xl font-bold mb-2">AI-Powered Exam Generator</h2>
+                <p class="text-xl">Transform your syllabus into high-quality practice exams in seconds</p>
+                <div class="mt-6">
+                    <a href="plans.html"
+                        class="bg-white text-blue-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors">View
+                        Plans</a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div
+                class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 transform transition-all hover:scale-[1.01]">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-file-upload text-blue-500 mr-2"></i>
+                    Upload Your Syllabus
+                </h2>
+
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 mb-4 text-center cursor-pointer hover:border-blue-500 transition-colors"
+                    id="dropZone">
+                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 dark:text-gray-500 mb-2"></i>
+                    <p>Drag and drop a PDF file here or</p>
+                    <input type="file" id="pdfUpload" accept="application/pdf" class="hidden">
+                    <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                        id="browseButton">
+                        Browse Files
+                    </button>
+                </div>
+
+                <div class="mb-4">
+                    <p class="text-gray-500 dark:text-gray-400 mb-2">Or paste your syllabus text:</p>
+                    <textarea id="syllabusText" rows="5" placeholder="Paste your syllabus text here..."
+                        class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600"></textarea>
+                </div>
+
+                <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                    <h3 class="text-lg font-medium mb-2 flex items-center">
+                        <i class="fas fa-cog text-purple-500 mr-2"></i>
+                        Generation Options
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number of
+                                Questions</label>
+                            <input type="range" min="5" max="30" value="10" class="w-full" id="questionCount">
+                            <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                <span>5</span>
+                                <span id="questionCountValue">10</span>
+                                <span>30</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Difficulty
+                                Level</label>
+                            <select id="difficultyLevel"
+                                class="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Output
+                            Format</label>
+                        <div class="flex items-center space-x-4">
+                            <label class="inline-flex items-center">
+                                <input id="formatPdf" type="radio" name="outputFormat" value="pdf" checked
+                                    class="form-radio text-blue-600">
+                                <span class="ml-2">PDF</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input id="formatDocx" type="radio" name="outputFormat" value="docx"
+                                    class="form-radio text-blue-600">
+                                <span class="ml-2">DOCX (Premium)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="analyzeButton"
+                    class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors flex items-center justify-center">
+                    <i class="fas fa-brain mr-2"></i>
+                    <span>Analyze and Generate Exam</span>
+                </button>
+
+                <div id="spinner" class="hidden my-4 flex justify-center items-center">
+                    <div class="loader"></div>
+                    <p class="ml-3 text-lg">Analyzing content...</p>
+                </div>
+            </div>
+
+            <!-- Download Section -->
+            <div id="downloadSection"
+                class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 hidden transform transition-all hover:scale-[1.01]">
+                <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-download text-green-500 mr-2"></i>
+                    Your Generated Documents
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a id="examDownload" href="#"
+                        class="flex items-center justify-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-file-alt text-blue-500 mr-2 text-2xl"></i>
+                        <div>
+                            <p class="font-medium">Practice Exam</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">PDF with questions</p>
+                        </div>
+                    </a>
+
+                    <a id="answerKeyDownload" href="#"
+                        class="flex items-center justify-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-key text-amber-500 mr-2 text-2xl"></i>
+                        <div>
+                            <p class="font-medium">Answer Key</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">PDF with solutions</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-800 shadow-inner py-6 mt-8">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">StudyAI</h3>
+                        <p class="text-sm">Transforming education with AI-powered tools for students and educators.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Links</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="index.html" class="hover:text-blue-500 transition-colors">Home</a></li>
+                            <li><a href="plans.html" class="hover:text-blue-500 transition-colors">Plans</a></li>
+                            <li><a href="#" class="hover:text-blue-500 transition-colors">About</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Legal</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="hover:text-blue-500 transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-blue-500 transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Connect</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-linkedin text-lg"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t dark:border-gray-700 mt-6 pt-6 text-center text-sm">
+                    <p>&copy; 2025 StudyAI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

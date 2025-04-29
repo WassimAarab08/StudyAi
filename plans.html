@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyAI | Subscription Plans</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div class="min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav class="bg-white dark:bg-gray-800 shadow-md px-6 py-4 sticky top-0 z-10">
+            <div class="container mx-auto flex justify-between items-center flex-wrap">
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <i class="fas fa-book-open text-blue-600 dark:text-blue-400 text-2xl"></i>
+                        <h1 class="text-2xl font-bold">StudyAI</h1>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="hover:text-blue-500 transition-colors font-medium">Home</a>
+                    <a href="plans.html"
+                        class="hover:text-blue-500 transition-colors font-medium text-blue-500">Subscription Plans</a>
+                    <a href="#" class="hover:text-blue-500 transition-colors font-medium">About</a>
+                    <a href="#" class="hover:text-blue-500 transition-colors font-medium">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle"
+                        class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
+                    </button>
+                    <button class="md:hidden" id="mobileMenuButton">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <!-- Mobile Menu (inside the container) -->
+                <div id="mobileMenu" class="hidden md:hidden mt-4 w-full pb-2 space-y-2">
+                    <a href="index.html" class="block py-2 hover:text-blue-500 transition-colors">Home</a>
+                    <a href="plans.html"
+                        class="block py-2 hover:text-blue-500 transition-colors text-blue-500">Subscription Plans</a>
+                    <a href="#" class="block py-2 hover:text-blue-500 transition-colors">About</a>
+                    <a href="#" class="block py-2 hover:text-blue-500 transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container mx-auto p-6 flex-grow">
+            <!-- Hero Section -->
+            <div
+                class="text-center py-8 mb-8 bg-gradient-to-r from-purple-600 to-indigo-700 rounded-lg text-white shadow-lg">
+                <h2 class="text-4xl font-bold mb-2">Choose Your Plan</h2>
+                <p class="text-xl">Find the perfect plan to meet your exam generation needs</p>
+            </div>
+
+            <!-- Plans Cards - Responsive for both desktop and mobile -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-semibold mb-8 text-center">Subscription Plans</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Free Plan -->
+                    <div class="border rounded-lg p-6 relative transition-all" id="freePlan">
+                        <div class="absolute top-4 right-4 hidden checkmark text-green-500">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-700 dark:text-gray-300">Free</h3>
+                        <p class="text-2xl font-bold my-2">$0<span
+                                class="text-sm font-normal text-gray-500">/month</span></p>
+                        <ul class="mt-4 space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>5 exams per month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Up to 10 questions per exam</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Basic AI analysis</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>PDF format only</span>
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <i class="fas fa-times text-red-500 mr-2"></i>
+                                <span>No custom exam headers</span>
+                            </li>
+                            <li class="flex items-center text-gray-500">
+                                <i class="fas fa-times text-red-500 mr-2"></i>
+                                <span>No explanatory answers</span>
+                            </li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white rounded-md transition-colors planButton"
+                            data-plan="Free">Select Plan</button>
+                    </div>
+
+                    <!-- Premium Plan -->
+                    <div class="border rounded-lg p-6 relative border-blue-500 dark:border-blue-400 shadow-md transition-all"
+                        id="premiumPlan">
+                        <div class="absolute -top-3 -right-3 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                            Popular</div>
+                        <div class="absolute top-4 right-4 hidden checkmark text-green-500">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400">Premium</h3>
+                        <p class="text-2xl font-bold my-2">$9.99<span
+                                class="text-sm font-normal text-gray-500">/month</span></p>
+                        <ul class="mt-4 space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited exams</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Up to 30 questions per exam</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Advanced AI analysis</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Custom exam headers</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Explanatory answers</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>PDF & DOCX formats</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors planButton"
+                            data-plan="Premium">Select Plan</button>
+                    </div>
+
+                    <!-- Enterprise Plan -->
+                    <div class="border rounded-lg p-6 relative transition-all" id="enterprisePlan">
+                        <div class="absolute top-4 right-4 hidden checkmark text-green-500">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400">Enterprise</h3>
+                        <p class="text-2xl font-bold my-2">$29.99<span
+                                class="text-sm font-normal text-gray-500">/month</span></p>
+                        <ul class="mt-4 space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>All Premium features</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited questions per exam</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Premium AI analysis</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>All document formats</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>API access for integration</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Dedicated account manager</span>
+                            </li>
+                        </ul>
+                        <button
+                            class="mt-6 w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors planButton"
+                            data-plan="Enterprise">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-6 text-center">Frequently Asked Questions</h2>
+
+                <div class="space-y-4">
+                    <div class="border-b dark:border-gray-700 pb-4">
+                        <button class="flex justify-between items-center w-full text-left font-medium faq-toggle">
+                            <span>How does the exam generator work?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-2 text-gray-600 dark:text-gray-400">
+                            <p>Our AI-powered exam generator analyzes your syllabus or course material to create
+                                relevant practice questions. It uses natural language processing to understand the
+                                content and generates appropriate questions and answers.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-b dark:border-gray-700 pb-4">
+                        <button class="flex justify-between items-center w-full text-left font-medium faq-toggle">
+                            <span>Can I change my plan later?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-2 text-gray-600 dark:text-gray-400">
+                            <p>Yes, you can upgrade or downgrade your plan at any time. Changes will take effect at the
+                                start of your next billing cycle.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-b dark:border-gray-700 pb-4">
+                        <button class="flex justify-between items-center w-full text-left font-medium faq-toggle">
+                            <span>Is there a trial period?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-2 text-gray-600 dark:text-gray-400">
+                            <p>We offer a 7-day free trial for our Premium plan. You can try all the premium features
+                                and decide if it's right for you before committing.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-b dark:border-gray-700 pb-4">
+                        <button class="flex justify-between items-center w-full text-left font-medium faq-toggle">
+                            <span>What payment methods do you accept?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-2 text-gray-600 dark:text-gray-400">
+                            <p>We accept all major credit cards, PayPal, and in select regions, bank transfers. All
+                                payments are securely processed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-800 shadow-inner py-6 mt-8">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">StudyAI</h3>
+                        <p class="text-sm">Transforming education with AI-powered tools for students and educators.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Links</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="index.html" class="hover:text-blue-500 transition-colors">Home</a></li>
+                            <li><a href="plans.html" class="hover:text-blue-500 transition-colors">Plans</a></li>
+                            <li><a href="#" class="hover:text-blue-500 transition-colors">About</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Legal</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><a href="#" class="hover:text-blue-500 transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-blue-500 transition-colors">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Connect</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-linkedin text-lg"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                                <i class="fab fa-github text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t dark:border-gray-700 mt-6 pt-6 text-center text-sm">
+                    <p>&copy; 2025 StudyAI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
