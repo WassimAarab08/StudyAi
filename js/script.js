@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
     // OpenRouter API key 
-    const OPENROUTER_API_KEY = "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";
+    const OPENROUTER_API_KEY = "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";
     const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
     // Dark mode toggle
