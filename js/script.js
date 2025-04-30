@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
     // OpenRouter API key 
-    const OPENROUTER_API_KEY = "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";
+    const OPENROUTER_API_KEY = "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";
     const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
     // Dark mode toggle
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-Title': 'StudyAi Exam Generator'
                 },
                 body: JSON.stringify({
-                    model: 'openai/gpt-3.5-turbo-16k',
+                    model: 'google/gemini-2.0-flash-exp:free',
                     messages: [
                         {
                             role: 'system',
